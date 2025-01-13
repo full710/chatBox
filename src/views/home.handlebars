@@ -1,4 +1,3 @@
-
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <img src="img/logo.png" alt="Logo" width="120" height="110" class="d-inline-block align-text-top">
@@ -6,13 +5,21 @@
   </div>
 </nav>
 <div class="container p-3 text-primary-emphasis bg-info-subtle border border-primary-subtle rounded-3">
-    <div>
-        <p id="messagesLogs"></p>
-    </div>
-    <div>
-        <input type="text" id="chatBox">
-    </div>
+  <div id="messagesLogs" style="max-height: 300px; overflow-y: scroll;"></div> <!-- Contenedor para mostrar los mensajes -->
+  <div class="d-flex">
+    <input type="text" id="chatBox" class="form-control me-2" placeholder="Escribe un mensaje...">
+    <button id="sendBtn" class="btn btn-primary">Enviar</button>
+    <button id="emojiBtn" class="btn btn-light">😊</button> <!-- Botón para mostrar emojis -->
+  </div>
+  <div id="emojiPicker" style="display:none; position: absolute; background-color: white; border: 1px solid #ddd; padding: 5px; border-radius: 5px;">
+    <!-- Aquí se insertará el picker de emojis -->
+  </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js"></script>
-<script src="js/main.js"></script>
+
+<!-- Incluir las dependencias de Emoji Mart -->
+<script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emoji-mart/data"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Librería SweetAlert2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js"></script> <!-- Librería Socket.io -->
+<script src="js/main.js"></script> <!-- Tu archivo JS con la lógica del chat -->
