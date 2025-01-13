@@ -22,6 +22,7 @@ const io = new Server(httpServer)
 
 let message = []
 io.on("connection", (socket)=>{
+    socket.emit("messagesLogs", message);
     socket.on("message",data => {
         message.push(data)
         io.emit("messagesLogs", message)

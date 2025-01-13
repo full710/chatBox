@@ -1,9 +1,17 @@
-<h1>Home</h1>
-<div>
-    <input type="text" id="chatBox">
-</div>
-<div>
-    <p id="messagesLogs"></p>
+
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <img src="img/logo.png" alt="Logo" width="120" height="110" class="d-inline-block align-text-top">
+    <a class="navbar-brand" href="#"><h1>chatBox</h1></a>
+  </div>
+</nav>
+<div class="container p-3 text-primary-emphasis bg-info-subtle border border-primary-subtle rounded-3">
+    <div>
+        <p id="messagesLogs"></p>
+    </div>
+    <div>
+        <input type="text" id="chatBox">
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js"></script>
