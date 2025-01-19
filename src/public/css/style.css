@@ -249,3 +249,112 @@ body {
     animation: shake 0.5s; /* Duración de la animación */
     animation-iteration-count: 2; /* Repetir dos veces */
   }
+
+/* Media query para pantallas medianas a pequeñas */
+@media (max-width: 768px) {
+    /* Barra de navegación */
+    .navbar {
+        padding: 0.5rem 1rem !important;
+    }
+
+    .navbar-brand h1 {
+        font-size: 1.5rem !important;
+    }
+
+    /* Contenedor del chat */
+    .container {
+        padding: 1rem !important;
+        margin-top: 2rem !important;
+        width: 100% !important;
+    }
+
+    /* Caja de mensajes */
+    #messagesLogs {
+        height: 300px !important; /* Ajustar altura */
+        font-size: 0.9rem !important; /* Reducir tamaño del texto */
+    }
+
+    /* Input del chat */
+    #chatBox {
+        font-size: 0.95rem !important;
+        padding: 0.7rem !important;
+    }
+
+    /* Botones */
+    #sendBtn, #buzzBtn, #emojiBtn {
+        font-size: 0.9rem !important;
+        padding: 0.5rem 1rem !important;
+    }
+
+    /* Caja de usuarios */
+    #usersContainer {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 1rem !important;
+    }
+
+    /* Listado de usuarios */
+    #userList li {
+        font-size: 0.9rem !important;
+    }
+
+    /* Ajustes en el contenedor del chat */
+    #chatContainer {
+        flex-direction: column !important; /* Cambiar a columna en pantallas pequeñas */
+        width: 100%;
+    }
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 576px) {
+    /* Barra de navegación */
+    .navbar {
+        padding: 0.5rem 1rem !important;
+    }
+
+    .navbar-brand h1 {
+        font-size: 1.4rem !important;
+    }
+
+    /* Contenedor del chat */
+    .container {
+        padding: 0.8rem !important;
+        margin-top: 1rem !important;
+    }
+
+    /* Caja de mensajes */
+    #messagesLogs {
+        height: 250px !important; /* Reducir altura */
+        font-size: 0.85rem !important;
+    }
+
+    /* Input del chat */
+    #chatBox {
+        font-size: 0.85rem !important;
+        padding: 0.6rem !important;
+    }
+
+    /* Botones */
+    #sendBtn, #buzzBtn, #emojiBtn {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 1rem !important;
+    }
+
+    /* Ajustar tamaño de lista de usuarios */
+    #usersContainer {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 1rem !important;
+    }
+
+    /* Listado de usuarios */
+    #userList li {
+        font-size: 0.8rem !important;
+    }
+
+    /* Ajustes en el contenedor del chat */
+    #chatContainer {
+        flex-direction: column !important; /* Cambiar a columna */
+        width: 100%;
+    }
+}
