@@ -53,15 +53,20 @@ io.on("connection", (socket) => {
 
   // Cuando un usuario se desconecta
   socket.on("disconnect", () => {
-    console.log("Usuario desconectado");
+      
+      // Buscar el usuario desconectado en la lista de usuarios conectados
+      const disconnectedUser = connectedUsers.find(user => user.id === socket.id);
+      console.log(`${disconnectedUser.username}se ha desconectado`);
+      
+    if (disconnectedUser) {
+      // Eliminar el usuario de la lista de conectados
+      connectedUsers = connectedUsers.filter(user => user.id !== socket.id);
   
-    // Eliminar el usuario de la lista de conectados
-    connectedUsers = connectedUsers.filter(user => user.id !== socket.id);
+      // Emitir la lista actualizada de usuarios conectados a todos los clientes
+      io.emit("updateUsers", connectedUsers);
   
-    // Emitir la lista de usuarios conectados a todos los clientes
-    io.emit("updateUsers", connectedUsers);
-  
-    // Notificar a todos los clientes que un usuario se ha desconectado
-    io.emit("userDisconnected", userName);
+      // Notificar a todos los clientes que un usuario se ha desconectado
+      io.emit("userDisconnected", disconnectedUser.username);
+    }
   });
 });
