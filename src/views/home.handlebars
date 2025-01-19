@@ -5,16 +5,16 @@
   </div>
 </nav>
 
-<div class="d-flex">
+<div class="d-flex box">
   <div id="chatContainer" class="container p-3 text-primary-emphasis bg-info-subtle border border-primary-subtle rounded-3 flex-grow-1">
     <div id="messagesLogs" style="max-height: 300px; overflow-y: scroll;"></div> <!-- Contenedor para mostrar los mensajes -->
     <div class="d-flex">
       <div class="input-container">
         <input type="text" id="chatBox" class="form-control me-2" placeholder="Escribe un mensaje...">
       </div>
+      <button id="emojiBtn" class="btn btn-light">😊</button> 
       <button id="sendBtn" class="btn btn-primary">Enviar</button>
       <button id="buzzBtn" class="btn btn-danger">Zumbido</button>
-      <button id="emojiBtn" class="btn btn-light">😊</button> 
     </div>
     <div id="emojiPicker" style="display:none; position: absolute; background-color: white; border: 1px solid #ddd; padding: 5px; border-radius: 5px;">
       

@@ -90,7 +90,7 @@ body {
 }
 
 #chatBox {
-    width: 100% !important;
+    width: 400px !important;
     padding: 0.8rem !important;
     border: 2px solid #4dd0e1 !important;
     border-radius: 8px !important;
@@ -130,6 +130,8 @@ body {
     display: flex !important;
     gap: 1rem !important;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 @keyframes fadeIn {
