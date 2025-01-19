@@ -5,6 +5,7 @@ const log = document.getElementById("messagesLogs");
 const sendBtn = document.getElementById("sendBtn");
 const emojiBtn = document.getElementById("emojiBtn");
 const emojiPicker = document.getElementById("emojiPicker");
+const userList = document.getElementById("userList");
 
 // Inicializar el Picker de Emoji Mart
 const picker = new EmojiMart.Picker({
@@ -15,7 +16,6 @@ const picker = new EmojiMart.Picker({
   }
 });
 
-// Agregar el picker al DOM (fuera de la interfaz)
 emojiPicker.appendChild(picker);
 
 // Solicitar el nombre de usuario con SweetAlert2
@@ -29,7 +29,7 @@ Swal.fire({
   allowOutsideClick: false
 }).then(result => {
   user = result.value;
-  socket.emit("newUser", user); // Emitir el nombre de usuario inmediatamente
+  socket.emit("newUser", user); // Emitir el nombre de usuario
 });
 
 // Enviar mensaje al hacer clic en el botón de enviar
@@ -55,38 +55,56 @@ chatBox.addEventListener("keyup", (event) => {
 
 // Mostrar mensajes nuevos en tiempo real
 socket.on("newMessage", (data) => {
-  log.innerHTML += `${data.user}: ${data.message} <br>`;
+  log.innerHTML += `<p><strong>${data.user}</strong>: ${data.message} <br></p>`;
   log.scrollTop = log.scrollHeight; // Scroll hacia abajo
 });
 
 // Mostrar mensaje de usuario conectado
 socket.on("userConnected", (userName) => {
-  const userConnectedMessage = `<p><em>${userName} se ha conectado, molestalo/a</em></p>`;
+  const userConnectedMessage = `<p class="user-message"><em><strong>${userName}</strong> se ha conectado, molestalo/a</em></p>`;
   log.innerHTML += userConnectedMessage;
   log.scrollTop = log.scrollHeight;
 });
 
+// Actualizar la lista de usuarios conectados
+socket.on("updateUsers", (users) => {
+  userList.innerHTML = ''; // Limpiar la lista de usuarios
+  users.forEach(user => {
+    const li = document.createElement('li');
+    li.textContent = user.username;
+    li.classList.add('user-connected');
+    userList.appendChild(li);
+  });
+});
+
 const buzzBtn = document.getElementById("buzzBtn");
 const buzzSound = new Audio('/sound/003.mp3');
+
 // Enviar zumbido al servidor
 buzzBtn.addEventListener("click", () => {
-  socket.emit("buzz", user); // Enviamos el zumbido con el nombre del usuario
+  socket.emit("buzz", user); // Enviar el zumbido con el nombre del usuario
 });
 
 // Recibir el zumbido y ejecutar la animación
 socket.on("receiveBuzz", (userName) => {
-  // Mostrar un mensaje que indique el zumbido
-  const buzzMessage = `<p><em>${userName} te envió un zumbido 🔔</em></p>`;
+  // Mostrar mensaje que indique el zumbido
+  const buzzMessage = `<p class="bot-message"><em><strong>${userName}</strong> te envió un zumbido 🔔</em></p>`;
   log.innerHTML += buzzMessage;
   log.scrollTop = log.scrollHeight;
   buzzSound.play();
 
   // Aplicar animación al contenedor del chat
-  const chatContainer = document.getElementById("chatContainer"); // Cambia el ID al contenedor principal
+  const chatContainer = document.getElementById("chatContainer");
   chatContainer.classList.add("shake");
 
   // Quitar la animación después de 1 segundo
   setTimeout(() => {
     chatContainer.classList.remove("shake");
   }, 1000);
+});
+
+socket.on("userDisconnected", (userName) => {
+  const userDisconnectedMessage = `<p class="user-message"><em><strong>${userName}</strong> se ha desconectado, adiós 👋</em></p>`;
+  log.innerHTML += userDisconnectedMessage;
+  log.scrollTop = log.scrollHeight;
 });

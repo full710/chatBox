@@ -19,7 +19,9 @@ const httpServer = app.listen(PUERTO, () => {
 });
 
 const io = new Server(httpServer);
-let messages = []; // Historial de mensajes
+
+// Lista de usuarios conectados
+let connectedUsers = [];
 
 io.on("connection", (socket) => {
   console.log("Nuevo cliente conectado");
@@ -27,18 +29,39 @@ io.on("connection", (socket) => {
   // Escuchar cuando un nuevo usuario se conecta
   socket.on("newUser", (userName) => {
     console.log(`${userName} se ha conectado`);
+    
+    // Agregar el usuario a la lista de conectados
+    connectedUsers.push({ id: socket.id, username: userName });
+    
+    // Emitir la lista de usuarios conectados a todos los clientes
+    io.emit("updateUsers", connectedUsers);
+
+    // Notificar a todos los clientes que el nuevo usuario se ha conectado
     io.emit("userConnected", userName);
   });
 
   // Escuchar y enviar solo el mensaje nuevo a los clientes
   socket.on("message", (data) => {
-    messages.push(data); // Guardar el mensaje en el historial
     io.emit("newMessage", data); // Enviar solo el nuevo mensaje a todos los clientes
   });
 
+  // Escuchar zumbidos
   socket.on("buzz", (userName) => {
     console.log(`${userName} envió un zumbido`);
     io.emit("receiveBuzz", userName); // Reenviar el zumbido a todos los clientes
   });
+
+  // Cuando un usuario se desconecta
+  socket.on("disconnect", () => {
+    console.log("Usuario desconectado");
   
+    // Eliminar el usuario de la lista de conectados
+    connectedUsers = connectedUsers.filter(user => user.id !== socket.id);
+  
+    // Emitir la lista de usuarios conectados a todos los clientes
+    io.emit("updateUsers", connectedUsers);
+  
+    // Notificar a todos los clientes que un usuario se ha desconectado
+    io.emit("userDisconnected", userName);
+  });
 });
