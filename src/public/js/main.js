@@ -71,7 +71,6 @@ const buzzSound = new Audio('/sound/003.mp3');
 // Enviar zumbido al servidor
 buzzBtn.addEventListener("click", () => {
   socket.emit("buzz", user); // Enviamos el zumbido con el nombre del usuario
-  buzzSound.play();
 });
 
 // Recibir el zumbido y ejecutar la animación
@@ -80,6 +79,7 @@ socket.on("receiveBuzz", (userName) => {
   const buzzMessage = `<p><em>${userName} te envió un zumbido 🔔</em></p>`;
   log.innerHTML += buzzMessage;
   log.scrollTop = log.scrollHeight;
+  buzzSound.play();
 
   // Aplicar animación al contenedor del chat
   const chatContainer = document.getElementById("chatContainer"); // Cambia el ID al contenedor principal
