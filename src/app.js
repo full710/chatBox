@@ -15,27 +15,30 @@ app.set("views", "./src/views");
 app.use("/", viewsRouter);
 
 const httpServer = app.listen(PUERTO, () => {
-    console.log("Escuchando desde puerto 8080");
+  console.log("Escuchando desde puerto 8080");
 });
 
 const io = new Server(httpServer);
-let nuevoUsuario
-let messages = [];
+let messages = []; // Historial de mensajes
+
 io.on("connection", (socket) => {
-    console.log("Nuevo cliente conectado");
+  console.log("Nuevo cliente conectado");
 
-    // Escuchar cuando un nuevo usuario se conecta
-    socket.on("newUser", (userName) => {
-        nuevoUsuario = userName
-        console.log(`${userName} se ha conectado`);
-        io.emit("userConnected", userName);
-    });
+  // Escuchar cuando un nuevo usuario se conecta
+  socket.on("newUser", (userName) => {
+    console.log(`${userName} se ha conectado`);
+    io.emit("userConnected", userName);
+  });
 
-    // Envía el historial de mensajes al cliente recién conectado
-    socket.emit("messagesLogs", messages);
+  // Escuchar y enviar solo el mensaje nuevo a los clientes
+  socket.on("message", (data) => {
+    messages.push(data); // Guardar el mensaje en el historial
+    io.emit("newMessage", data); // Enviar solo el nuevo mensaje a todos los clientes
+  });
 
-    socket.on("message", data => {
-        messages.push(data);
-        io.emit("newMessage", messages); //  Envía los mensajes a todos los clientes
-    });
+  socket.on("buzz", (userName) => {
+    console.log(`${userName} envió un zumbido`);
+    io.emit("receiveBuzz", userName); // Reenviar el zumbido a todos los clientes
+  });
+  
 });

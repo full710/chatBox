@@ -35,7 +35,6 @@ Swal.fire({
 // Enviar mensaje al hacer clic en el botón de enviar
 sendBtn.addEventListener("click", () => {
   if (chatBox.value.trim().length > 0) {
-    // Enviar el mensaje al servidor
     socket.emit("message", { user: user, message: chatBox.value });
     chatBox.value = "";
   }
@@ -48,22 +47,45 @@ emojiBtn.addEventListener("click", () => {
 
 // Listener para el evento 'keyup' en el chat box
 chatBox.addEventListener("keyup", (event) => {
-  if (event.key === "Enter") {
-    if (chatBox.value.trim().length > 0) {
-      // Enviar el mensaje al servidor
-      socket.emit("message", { user: user, message: chatBox.value });
-      chatBox.value = "";
-    }
+  if (event.key === "Enter" && chatBox.value.trim().length > 0) {
+    socket.emit("message", { user: user, message: chatBox.value });
+    chatBox.value = "";
   }
 });
 
+// Mostrar mensajes nuevos en tiempo real
 socket.on("newMessage", (data) => {
   log.innerHTML += `${data.user}: ${data.message} <br>`;
+  log.scrollTop = log.scrollHeight; // Scroll hacia abajo
+});
+
+// Mostrar mensaje de usuario conectado
+socket.on("userConnected", (userName) => {
+  const userConnectedMessage = `<p><em>${userName} se ha conectado, molestalo/a</em></p>`;
+  log.innerHTML += userConnectedMessage;
   log.scrollTop = log.scrollHeight;
 });
 
-socket.on("userConnected", userName => {
-    const userConnectedMessage = `<p><em>${userName} se ha conectado, molestalo/a</em></p>`;
-    log.innerHTML += userConnectedMessage;
+const buzzBtn = document.getElementById("buzzBtn");
+
+// Enviar zumbido al servidor
+buzzBtn.addEventListener("click", () => {
+  socket.emit("buzz", user); // Enviamos el zumbido con el nombre del usuario
+});
+
+// Recibir el zumbido y ejecutar la animación
+socket.on("receiveBuzz", (userName) => {
+  // Mostrar un mensaje que indique el zumbido
+  const buzzMessage = `<p><em>${userName} te envió un zumbido 🔔</em></p>`;
+  log.innerHTML += buzzMessage;
   log.scrollTop = log.scrollHeight;
+
+  // Aplicar animación al contenedor del chat
+  const chatContainer = document.getElementById("chatContainer"); // Cambia el ID al contenedor principal
+  chatContainer.classList.add("shake");
+
+  // Quitar la animación después de 1 segundo
+  setTimeout(() => {
+    chatContainer.classList.remove("shake");
+  }, 1000);
 });

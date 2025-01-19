@@ -1,14 +1,16 @@
+
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <img src="img/logo.png" alt="Logo" width="120" height="110" class="d-inline-block align-text-top">
     <a class="navbar-brand" href="#"><h1>chatBox</h1></a>
   </div>
 </nav>
-<div class="container p-3 text-primary-emphasis bg-info-subtle border border-primary-subtle rounded-3">
+<div id="chatContainer" class="container p-3 text-primary-emphasis bg-info-subtle border border-primary-subtle rounded-3">
   <div id="messagesLogs" style="max-height: 300px; overflow-y: scroll;"></div> <!-- Contenedor para mostrar los mensajes -->
   <div class="d-flex">
     <input type="text" id="chatBox" class="form-control me-2" placeholder="Escribe un mensaje...">
     <button id="sendBtn" class="btn btn-primary">Enviar</button>
+    <button id="buzzBtn" class="btn btn-danger">💥 Zumbido</button>
     <button id="emojiBtn" class="btn btn-light">😊</button> <!-- Botón para mostrar emojis -->
   </div>
   <div id="emojiPicker" style="display:none; position: absolute; background-color: white; border: 1px solid #ddd; padding: 5px; border-radius: 5px;">

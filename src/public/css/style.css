@@ -59,3 +59,65 @@ body {
     padding: 0;
     margin: 0;
 }
+
+/* Animación de temblor */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+  
+  /* Clase para aplicar el temblor */
+  .shake {
+    animation: shake 0.5s; /* Duración de la animación */
+    animation-iteration-count: 2; /* Repetir dos veces */
+  }
+  
+  /* Media query para dispositivos pequeños (celulares) */
+@media (max-width: 576px) {
+    /* Reducir el tamaño de la barra de navegación */
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .navbar-brand h1 {
+        font-size: 1.4rem;
+    }
+
+    /* Ajustar el tamaño de la caja de entrada de texto */
+    #chatBox {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Ajustar el tamaño de los botones */
+    #sendBtn, #buzzBtn, #emojiBtn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    /* Hacer más pequeño el contenedor del chat */
+    .container {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    /* Ajustar la altura de los mensajes */
+    #messagesLogs {
+        max-height: 250px;
+    }
+
+    /* Asegurar que los botones estén en fila */
+    .d-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
