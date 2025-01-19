@@ -1,5 +1,6 @@
 const socket = io();
 let user;
+let isUserIdentified = false;
 const chatBox = document.getElementById("chatBox");
 const log = document.getElementById("messagesLogs");
 const sendBtn = document.getElementById("sendBtn");
@@ -18,7 +19,6 @@ const picker = new EmojiMart.Picker({
 
 emojiPicker.appendChild(picker);
 
-// Solicitar el nombre de usuario con SweetAlert2
 Swal.fire({
   title: "Identifícate",
   input: "text",
@@ -26,11 +26,15 @@ Swal.fire({
   inputValidator: (value) => {
     return !value && "Necesitas escribir un nombre para continuar";
   },
-  allowOutsideClick: false
+  allowOutsideClick: false,
+  allowEscapeKey: false, // Desactiva el cierre con la tecla Escape
 }).then(result => {
-  user = result.value;
-  socket.emit("newUser", user); // Emitir el nombre de usuario
+  if (result.value) {  // Verifica que el nombre no sea vacío
+    user = result.value;
+    socket.emit("newUser", user); // Emitir el nombre de usuario solo si es válido
+  }
 });
+
 
 // Enviar mensaje al hacer clic en el botón de enviar
 sendBtn.addEventListener("click", () => {
