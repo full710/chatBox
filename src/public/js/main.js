@@ -57,12 +57,8 @@ chatBox.addEventListener("keyup", (event) => {
   }
 });
 
-socket.on("messagesLogs", data => {
-  let mensajes = "";
-  data.forEach(mensaje => {
-    mensajes += `${mensaje.user}: ${mensaje.message} <br>`;
-  });
-  log.innerHTML += mensajes;
+socket.on("newMessage", (data) => {
+  log.innerHTML += `${data.user}: ${data.message} <br>`;
   log.scrollTop = log.scrollHeight;
 });
 

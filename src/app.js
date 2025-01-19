@@ -36,6 +36,6 @@ io.on("connection", (socket) => {
 
     socket.on("message", data => {
         messages.push(data);
-        io.emit("messagesLogs", messages); //  Envía los mensajes a todos los clientes
+        io.emit("newMessage", messages); //  Envía los mensajes a todos los clientes
     });
 });
