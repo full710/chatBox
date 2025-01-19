@@ -56,7 +56,8 @@ io.on("connection", (socket) => {
       
       // Buscar el usuario desconectado en la lista de usuarios conectados
       const disconnectedUser = connectedUsers.find(user => user.id === socket.id);
-      console.log(`${disconnectedUser.username}se ha desconectado`);
+
+      console.log(`Usuario desconectado`);
       
     if (disconnectedUser) {
       // Eliminar el usuario de la lista de conectados

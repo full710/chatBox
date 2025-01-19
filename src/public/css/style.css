@@ -1,18 +1,25 @@
-/* Importar fuente desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-*{
+
+* {
     caret-color: transparent;
 }
 
-/* Barra de navegación */
+body {
+    font-family: 'Poppins', sans-serif !important;
+    background: linear-gradient(135deg, #e0f7fa, #c8e6c9, #80deea) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #333 !important;
+}
+
 .navbar {
     padding: 1rem 2rem !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
-    background: linear-gradient(135deg, #80deea, #4dd0e1, #1de9b6) !important; /* Degradado más marcado */
+    background: linear-gradient(135deg, #80deea, #4dd0e1, #1de9b6) !important;
 }
 
 .navbar-brand h1 {
-    color: #ffffff !important; /* Blanco */
+    color: #ffffff !important;
     font-size: 2rem !important;
     font-weight: 600;
     letter-spacing: 1px;
@@ -20,9 +27,8 @@
     animation: fadeIn 1.5s ease-out;
 }
 
-/* Contenedor del chat */
 .container {
-    background-color: #ffffff !important; /* Blanco */
+    background-color: #ffffff !important;
     padding: 2rem !important;
     border-radius: 12px !important;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
@@ -34,46 +40,30 @@
     flex-direction: column !important;
 }
 
-/* Estilo para los mensajes */
 #messagesLogs {
-    width: calc(100% - 220px); /* Dejar espacio para la lista de usuarios */
+    width: 100%;
     height: 350px !important;
     overflow-y: auto !important;
     padding: 1.5rem !important;
-    background-color: #e1f5fe !important; /* Azul claro suave */
+    background-color: #e1f5fe !important;
     border-radius: 12px !important;
-    border: 1px solid #4dd0e1 !important; /* Azul brillante */
+    border: 1px solid #4dd0e1 !important;
     color: #333 !important;
     font-size: 1rem !important;
     font-family: 'Poppins', sans-serif !important;
     line-height: 1.4 !important;
     margin-bottom: 1.5rem !important;
-    flex-grow: 1 !important; /* Para que crezca con los mensajes */
     caret-color: transparent;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
-/* Animación de aparición de los mensajes */
-@keyframes messageAppear {
-    0% {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    50% {
-        transform: translateY(-10px);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Estilo para los mensajes */
 #messagesLogs .message {
     animation: messageAppear 0.5s ease-out forwards;
     margin-bottom: 1rem !important;
     padding: 0.8rem 1.2rem !important;
-    background-color: #c8e6c9 !important; /* Verde menta suave */
+    background-color: #c8e6c9 !important;
     border-radius: 8px !important;
     max-width: 80% !important;
     color: #333 !important;
@@ -82,69 +72,66 @@
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* Diferenciar entre los mensajes del usuario y el bot */
 #messagesLogs .user-message {
-    background-color: #b2dfdb !important; /* Azul claro para el usuario */
+    background-color: #b2dfdb !important;
 }
 
 #messagesLogs .bot-message {
-    background-color: #d1c4e9 !important; /* Lavanda para el bot */
+    background-color: #d1c4e9 !important;
 }
+
 .input-container input {
     width: 100%;
     padding: 10px;
     border: none;
     outline: none;
-    caret-color: transparent; /* Sin caret visible */
-    background: transparent; /* Fondo transparente para que no sobresalga el input */
-  }
-/* Estilo para el campo de entrada */
+    caret-color: transparent;
+    background: transparent;
+}
+
 #chatBox {
-    width: 400px !important;
-    padding: 0.8rem !important; /* Tamaño ajustado */
-    border: 2px solid #4dd0e1 !important; /* Azul brillante */
+    width: 100% !important;
+    padding: 0.8rem !important;
+    border: 2px solid #4dd0e1 !important;
     border-radius: 8px !important;
-    font-size: 1rem !important; /* Ajustado */
-    background-color: #e0f7fa !important; /* Azul muy suave */
+    font-size: 1rem !important;
+    background-color: #e0f7fa !important;
     outline: none !important;
     transition: border 0.3s ease !important;
-    margin-right: 1rem !important; /* Separación entre el input y los botones */
+    margin-right: 1rem !important;
     font-family: 'Poppins', sans-serif !important;
     caret-color: black !important;
 }
 
 #chatBox:focus {
-    border-color: #1de9b6 !important; 
+    border-color: #1de9b6 !important;
     box-shadow: 0 0 8px rgba(29, 233, 182, 0.3) !important;
 }
 
-/* Botones */
 #sendBtn, #buzzBtn, #emojiBtn {
-    background-color: #4dd0e1 !important; /* Azul suave */
-    color: #ffffff !important; /* Blanco */
+    background-color: #4dd0e1 !important;
+    color: #ffffff !important;
     border: none !important;
     border-radius: 8px !important;
-    padding: 0.6rem 1.2rem !important; /* Ajustado */
-    font-size: 1rem !important; /* Tamaño más pequeño */
+    padding: 0.6rem 1.2rem !important;
+    font-size: 1rem !important;
     cursor: pointer !important;
     transition: background-color 0.3s ease !important;
-    width: auto !important; /* Ajuste a su tamaño natural */
+    width: auto !important;
     font-family: 'Poppins', sans-serif !important;
     caret-color: transparent !important;
 }
 
 #sendBtn:hover, #buzzBtn:hover, #emojiBtn:hover {
-    background-color: #26c6da !important; /* Azul más oscuro */
+    background-color: #26c6da !important;
 }
 
-/* Asegurar que los botones no se amontonen */
 .d-flex {
     display: flex !important;
-    gap: 1rem !important; /* Añadir espacio entre los botones */
-    justify-content:space-around;
+    gap: 1rem !important;
+    justify-content: space-between;
 }
 
-/* Animación para la barra de navegación */
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -154,74 +141,31 @@
     }
 }
 
-/* Estilo para el cuerpo */
-body {
-    font-family: 'Poppins', sans-serif !important;
-    background: linear-gradient(135deg, #e0f7fa, #c8e6c9, #80deea) !important; /* Degradado de fondo más marcado */
-    margin: 0 !important;
-    padding: 0 !important;
-    color: #333 !important;
-}
-
-/* Media query para dispositivos pequeños */
-@media (max-width: 576px) {
-    .navbar {
-        padding: 0.5rem 1rem !important;
-    }
-
-    .navbar-brand h1 {
-        font-size: 1.6rem !important;
-    }
-
-    .container {
-        padding: 1.5rem !important;
-        margin-top: 2rem !important;
-    }
-
-    #chatBox {
-        font-size: 0.95rem !important; /* Ajustado para pantallas pequeñas */
-        padding: 0.6rem !important;
-    }
-
-    #sendBtn, #buzzBtn, #emojiBtn {
-        font-size: 0.9rem !important; /* Más pequeño */
-        padding: 0.5rem 1.1rem !important; /* Ajustado */
-        margin-bottom: 1rem !important; /* Separación más amplia entre botones */
-    }
-
-    #messagesLogs {
-        max-height: 250px !important;
-    }
-}
-
 #chatContainer {
     display: flex;
-    justify-content: space-between; /* Separar el chat de la lista de usuarios */
-    align-items: flex-start; /* Alinear verticalmente */
-    height: auto; /* Mantener altura dinámica */
-    width: 100%; /* Ancho completo */
+    justify-content: space-between;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
 }
 
-/* Caja de usuarios */
 #usersContainer {
-    width: 300px !important; /* Ajustar el ancho de la lista de usuarios */
-    max-height: auto; /* Mantener la misma altura máxima */
+    width: 300px !important;
+    max-height: auto;
     overflow-y: auto;
-    background-color: #f8f9fa; /* Fondo de la caja de usuarios */
+    background-color: #f8f9fa;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-left: 15px; /* Separar de la caja de chat */
+    margin-left: 15px;
 }
 
-/* Listado de usuarios */
 #userList li {
-    padding: 8px 10px; /* Ajustar el padding para que no quede tan espacioso */
+    padding: 8px 10px;
     border-bottom: 1px solid #ddd;
-    font-size: 1rem; /* Ajustar el tamaño de la fuente */
+    font-size: 1rem;
 }
 
-/* Estado de los usuarios */
 #userList li.online {
     color: green;
 }
@@ -242,119 +186,89 @@ body {
     80% { transform: translate(-1px, -1px) rotate(1deg); }
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
-  }
-  
-  /* Clase para aplicar el temblor */
-  .shake {
-    animation: shake 0.5s; /* Duración de la animación */
-    animation-iteration-count: 2; /* Repetir dos veces */
-  }
+}
 
-/* Media query para pantallas medianas a pequeñas */
+.shake {
+    animation: shake 0.5s;
+    animation-iteration-count: 2;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-    /* Barra de navegación */
     .navbar {
-        padding: 0.5rem 1rem !important;
+        padding: 0.8rem 1rem !important;
     }
 
     .navbar-brand h1 {
         font-size: 1.5rem !important;
     }
 
-    /* Contenedor del chat */
     .container {
+        width: 95% !important;
+        max-width: none !important;
         padding: 1rem !important;
-        margin-top: 2rem !important;
-        width: 100% !important;
     }
 
-    /* Caja de mensajes */
-    #messagesLogs {
-        height: 300px !important; /* Ajustar altura */
-        font-size: 0.9rem !important; /* Reducir tamaño del texto */
-    }
-
-    /* Input del chat */
     #chatBox {
-        font-size: 0.95rem !important;
-        padding: 0.7rem !important;
-    }
-
-    /* Botones */
-    #sendBtn, #buzzBtn, #emojiBtn {
-        font-size: 0.9rem !important;
-        padding: 0.5rem 1rem !important;
-    }
-
-    /* Caja de usuarios */
-    #usersContainer {
         width: 100% !important;
-        margin-left: 0 !important;
-        padding: 1rem !important;
+        margin-right: 0.5rem !important;
     }
 
-    /* Listado de usuarios */
-    #userList li {
-        font-size: 0.9rem !important;
-    }
-
-    /* Ajustes en el contenedor del chat */
-    #chatContainer {
-        flex-direction: column !important; /* Cambiar a columna en pantallas pequeñas */
+    .d-flex {
+        flex-direction: column !important;
+        align-items: center !important; /* Centra los botones */
+        justify-content: center !important;
+        height: 100%;
         width: 100%;
     }
-}
-
-/* Media query para pantallas pequeñas */
-@media (max-width: 576px) {
-    /* Barra de navegación */
-    .navbar {
-        padding: 0.5rem 1rem !important;
+    #chatContainer{
+        align-items: center;
+    }
+    .input-container{
+        width: 100%;
+    }
+    #chatBox{
+        height: 100%;
+    }
+    #sendBtn, #buzzBtn, #emojiBtn {
+        width: 100% !important; /* Hace que los botones ocupen todo el ancho */
+       
     }
 
-    .navbar-brand h1 {
-        font-size: 1.4rem !important;
-    }
-
-    /* Contenedor del chat */
-    .container {
-        padding: 0.8rem !important;
+    #usersContainer {
+        width: 90% !important;
         margin-top: 1rem !important;
     }
 
-    /* Caja de mensajes */
     #messagesLogs {
-        height: 250px !important; /* Reducir altura */
-        font-size: 0.85rem !important;
+        height: 250px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-brand h1 {
+        font-size: 1.2rem !important;
     }
 
-    /* Input del chat */
-    #chatBox {
-        font-size: 0.85rem !important;
-        padding: 0.6rem !important;
+    .container {
+        padding: 0.5rem !important;
     }
-
-    /* Botones */
-    #sendBtn, #buzzBtn, #emojiBtn {
-        font-size: 0.8rem !important;
-        padding: 0.4rem 1rem !important;
-    }
-
-    /* Ajustar tamaño de lista de usuarios */
-    #usersContainer {
-        width: 100% !important;
-        margin-left: 0 !important;
-        padding: 1rem !important;
-    }
-
-    /* Listado de usuarios */
-    #userList li {
-        font-size: 0.8rem !important;
-    }
-
-    /* Ajustes en el contenedor del chat */
-    #chatContainer {
-        flex-direction: column !important; /* Cambiar a columna */
+    .d-flex{
         width: 100%;
     }
+    #chatBox {
+        width: 100% !important;
+    }
+
+    #sendBtn, #buzzBtn, #emojiBtn {
+        padding: 0.4rem 1rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    #usersContainer {
+        width: 90% !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;   
+    }
+    
 }
