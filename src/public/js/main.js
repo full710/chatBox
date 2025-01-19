@@ -67,10 +67,11 @@ socket.on("userConnected", (userName) => {
 });
 
 const buzzBtn = document.getElementById("buzzBtn");
-
+const buzzSound = new Audio('/sound/003.mp3');
 // Enviar zumbido al servidor
 buzzBtn.addEventListener("click", () => {
   socket.emit("buzz", user); // Enviamos el zumbido con el nombre del usuario
+  buzzSound.play();
 });
 
 // Recibir el zumbido y ejecutar la animación
